@@ -25,6 +25,12 @@ class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         if target in nums:
             return nums.index(target)
+        elif target < nums[0]:
+            nums.insert(0, target)
+            return 0
+        elif target > nums[-1]:
+            nums.insert(len(nums), target)
+            return len(nums)-1
         else:
             for i in range(len(nums)-1):
                 if target > nums[i] and target < nums[i+1]:
