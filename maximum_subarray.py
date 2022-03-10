@@ -21,13 +21,26 @@ Output: 23
 from typing import List
 
 
+# class Solution:
+#     def maxSubArray(self, nums: List[int]) -> int:
+#         largest = -10e4
+#         for ind,ele in enumerate(nums):
+#             sub_array_sum = 0
+#             for sub_ele in nums[ind:]:
+#                 sub_array_sum += sub_ele
+#                 if sub_array_sum > largest:
+#                     largest = sub_array_sum
+#         return largest
+
+
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        largest = -10e4
-        for ind,ele in enumerate(nums):
-            sub_array_sum = 0
-            for sub_ele in nums[ind:]:
-                sub_array_sum += sub_ele
-                if sub_array_sum > largest:
-                    largest = sub_array_sum
-        return largest
+        max_sum = nums[0]
+        curr_sum = 0
+
+        for n in nums:
+            if curr_sum < 0:
+                curr_sum = 0
+            curr_sum += n
+            max_sum = max(max_sum, curr_sum)
+        return max_sum
